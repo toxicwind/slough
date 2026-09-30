@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: An idea for molt — bring numbers if it's about speed
+about: An idea for slough — bring numbers if it's about speed
 title: "[feat] "
 labels: enhancement
 ---

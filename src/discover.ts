@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * molt — endpoint discovery.
+ * slough — endpoint discovery.
  *
  * Wireless ADB rotates the port, so the live endpoint is resolved on every
  * run instead of cached. Throws when the phone isn't reachable.

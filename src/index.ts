@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * molt — shed the weight off your Android phone.
+ * slough — shed the weight off your Android phone.
  *
  *   bun src/index.ts pull [dest]     pull phone -> dest (incremental)
  *   bun src/index.ts pull --full     ignore the manifest, pull everything
@@ -20,7 +20,7 @@ import { ManifestDB } from "./manifest.ts";
 import { pullDir, verifyDir, type TransferResult } from "./pull.ts";
 
 function usage(): never {
-  console.log(`molt — shed the weight off your Android phone
+  console.log(`slough — shed the weight off your Android phone
 
   pull [dest] [--full]   pull phone -> dest (incremental by default)
   verify [dest]          check archive against the manifest DB
@@ -46,7 +46,7 @@ async function cmdPull(dest: string, incremental: boolean) {
   const lines = results.map(
     (r) => `${r.method === "skipped" ? "SKIP" : "OK"} ${r.dir} files=${r.files} bytes=${r.bytes} method=${r.method} ms=${r.durationMs}`
   );
-  await Bun.write(manifestTxt, `# molt manifest ${new Date().toISOString()} phone=${pixel}\n${lines.join("\n")}\n`);
+  await Bun.write(manifestTxt, `# slough manifest ${new Date().toISOString()} phone=${pixel}\n${lines.join("\n")}\n`);
   const totalFiles = results.reduce((a, r) => a + r.files, 0);
   const totalBytes = results.reduce((a, r) => a + r.bytes, 0);
   console.log(`\ndone: ${totalFiles} files, ${(totalBytes / 1073741824).toFixed(2)} GB — manifest: ${manifestTxt}`);

@@ -1,6 +1,6 @@
 # Benchmarks
 
-The transfer path was chosen by measurement, not intuition. `bin/speed-race.sh` runs the full 8-method shootout; this page records the methodology and the results that shaped molt's hybrid strategy.
+The transfer path was chosen by measurement, not intuition. `bin/speed-race.sh` runs the full 8-method shootout; this page records the methodology and the results that shaped slough's hybrid strategy.
 
 ## Methodology
 
@@ -37,7 +37,7 @@ The transfer path was chosen by measurement, not intuition. `bin/speed-race.sh` 
 - **`exec-out` pipes are a trap.** They look clever (skip the sync protocol!) but framing overhead caps them at ~9 MB/s. An earlier tar-*streaming*-via-exec-out test showed the same: 7 MB/s vs 30 MB/s for on-device tar + separate pull. The pipe is the problem, not the tar.
 - **`adb pull -z` never wins** on incompressible data (which is what phones mostly hold: zips, apks, media).
 
-## The hybrid rule (what molt implements)
+## The hybrid rule (what slough implements)
 
 Per directory, from live stats before pulling:
 
@@ -47,7 +47,7 @@ Per directory, from live stats before pulling:
 ## Reproduce
 
 ```bash
-./bin/speed-race.sh /tmp/molt-speed-race
+./bin/speed-race.sh /tmp/slough-speed-race
 ```
 
 It prints a `RESULTS.txt` and cleans the bench payloads off the phone. If your numbers disagree with the table above on your hardware, open an issue — the hybrid thresholds (`TAR_FILE_THRESHOLD`, `TAR_AVG_SIZE_THRESHOLD` in `src/config.ts`) are env-tunable for exactly this reason.

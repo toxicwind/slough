@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * molt — configuration.
+ * slough — configuration.
  *
  * Everything the tool needs to know about the phone and the archive.
  * Override via environment; see .env.example.

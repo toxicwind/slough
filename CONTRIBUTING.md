@@ -1,4 +1,4 @@
-# Contributing to molt
+# Contributing to slough
 
 ## Ground rules
 

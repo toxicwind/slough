@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# molt fast-pull — bootstrap parallel pull: phone code/archives/repos -> DEST.
+# slough fast-pull — bootstrap parallel pull: phone code/archives/repos -> DEST.
 # Zero-dependency one-shot (no bun needed). For incremental pulls + manifests,
 # use `bun src/index.ts pull` instead.
 #
@@ -14,19 +14,19 @@ PIXEL="${PIXEL:-}"
 if [[ -z "$PIXEL" ]]; then
   PIXEL="$(adb devices | awk '/^10\.0\.0\.77:[0-9]+[[:space:]]+device/{print $1; exit}')"
 fi
-[[ -n "$PIXEL" ]] || { echo "molt: no phone endpoint (is wireless debugging on?)" >&2; exit 1; }
+[[ -n "$PIXEL" ]] || { echo "slough: no phone endpoint (is wireless debugging on?)" >&2; exit 1; }
 export PIXEL DEST
-echo "molt: phone=$PIXEL dest=$DEST"
+echo "slough: phone=$PIXEL dest=$DEST"
 
 MANIFEST="$DEST/manifests/pull-manifest-$(date -u +%Y%m%dT%H%M%SZ).txt"
 mkdir -p "$DEST/manifests"
 export MANIFEST
-echo "# molt fast-pull manifest $(date -u +%FT%TZ) phone=$PIXEL dest=$DEST" > "$MANIFEST"
+echo "# slough fast-pull manifest $(date -u +%FT%TZ) phone=$PIXEL dest=$DEST" > "$MANIFEST"
 
 pull_one() {
   local src="$1"
   local size files
-  if adb -s "$PIXEL" pull "/sdcard/$src" "$DEST/$src" >/tmp/molt-pull-"$src".log 2>&1; then
+  if adb -s "$PIXEL" pull "/sdcard/$src" "$DEST/$src" >/tmp/slough-pull-"$src".log 2>&1; then
     size=$(du -sh "$DEST/$src" | cut -f1)
     files=$(find "$DEST/$src" | wc -l)
     echo "OK $src size=$size files=$files" | tee -a "$MANIFEST"
@@ -45,4 +45,4 @@ export -f pull_one
 printf '%s\n' ${MOLT_SOURCES:-Download Documents Export 1openfang Tasker House} | \
   xargs -P4 -I{} bash -c 'pull_one "$@"' _ {}
 
-echo "molt: done. manifest: $MANIFEST"
+echo "slough: done. manifest: $MANIFEST"

@@ -17,7 +17,7 @@ labels: bug
 
 ## Environment
 
-- molt version / commit:
+- slough version / commit:
 - phone model + Android version:
 - host OS + `adb --version`:
 - wireless or USB ADB:

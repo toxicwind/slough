@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * molt — transfer engine.
+ * slough — transfer engine.
  *
  * Hybrid strategy, picked per directory from live stats (benchmarked):
  *   many small files -> on-device tar, then pull one tarball  (~29 MB/s)
@@ -128,7 +128,7 @@ async function tarPull(
   const start = Date.now();
   const stats = await dirStats(pixel, dir);
 
-  const tarName = `molt-${dir}-${Date.now()}.tar`;
+  const tarName = `slough-${dir}-${Date.now()}.tar`;
   await adbShell(pixel, `cd /sdcard && tar -cf /sdcard/${tarName} ${dir} 2>/dev/null`);
   const destTar = join(dest, tarName);
   await $`${ADB} -s ${pixel} pull /sdcard/${tarName} ${destTar}`.quiet();

@@ -13,7 +13,7 @@ Batch pulls are the bootstrap, not the steady state. The future-forward lane is 
 ## Target architecture
 
 ```
-phone ──Syncthing──▶ server:/<archive>/incoming/ ──▶ molt classifier ──▶ triage
+phone ──Syncthing──▶ server:/<archive>/incoming/ ──▶ slough classifier ──▶ triage
 ```
 
 1. The official Syncthing Android app syncs chosen folders to `<archive>/incoming/` on the server.

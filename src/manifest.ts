@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * molt — SQLite incremental manifest.
+ * slough — SQLite incremental manifest.
  *
  * Records every pulled file (path, size, mtime). The next run skips files
  * whose size AND mtime are unchanged — incremental by default, no flags.

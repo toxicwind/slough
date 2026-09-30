@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * molt — arrival classifier.
+ * slough — arrival classifier.
  *
  * Event-driven (fs.watch, never timers): watches the Syncthing landing zone
  * and routes each settled file into the archive layout:
@@ -178,7 +178,7 @@ export function watchIncoming(archive: string): void {
   mkdirSync(incoming, { recursive: true });
   for (const d of ARCHIVE_SUBDIRS) mkdirSync(join(archive, d), { recursive: true });
 
-  console.log(`molt classifier watching ${incoming} ...`);
+  console.log(`slough classifier watching ${incoming} ...`);
 
   const pending = new Map<string, ReturnType<typeof setTimeout>>();
 

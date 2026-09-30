@@ -1,10 +1,10 @@
-# molt 🪶
+# slough 🪶
 
-[![CI](https://github.com/toxicwind/molt/actions/workflows/ci.yml/badge.svg)](https://github.com/toxicwind/molt/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/github/license/toxicwind/molt)](LICENSE)
+[![CI](https://github.com/toxicwind/slough/actions/workflows/ci.yml/badge.svg)](https://github.com/toxicwind/slough/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/github/license/toxicwind/slough)](LICENSE)
 [![Bun](https://img.shields.io/badge/bun-%3E%3D1.2-black?logo=bun)](https://bun.sh)
 
-**Shed the weight off your Android phone.** molt is a benchmarked, hybrid ADB backup tool: it pulls your phone's bulk — downloads, documents, repos, exports — to your own server over wireless ADB, as fast as the wire allows, with SQLite incremental manifests so the second run only fetches what changed.
+**Shed the weight off your Android phone.** slough is a benchmarked, hybrid ADB backup tool: it pulls your phone's bulk — downloads, documents, repos, exports — to your own server over wireless ADB, as fast as the wire allows, with SQLite incremental manifests so the second run only fetches what changed.
 
 Built for my own Pixel 9 Pro XL, which sat at 99% full (225G of 229G). One command, 26 GB off the phone, every file accounted for.
 
@@ -15,7 +15,7 @@ bun install
 bun src/index.ts pull /mnt/8TB/phone-archive
 ```
 
-That's it. molt discovers your phone over wireless ADB (the port rotates — molt re-discovers it every run), stats each source dir, picks the fastest transfer method **per directory**, and writes a manifest. Run it again tomorrow: only changed files move.
+That's it. slough discovers your phone over wireless ADB (the port rotates — slough re-discovers it every run), stats each source dir, picks the fastest transfer method **per directory**, and writes a manifest. Run it again tomorrow: only changed files move.
 
 No dependency? Use the zero-dependency bootstrap instead:
 
@@ -68,7 +68,7 @@ Photos (`DCIM/`, `Pictures/`) are out of scope by design. `clean` (delete from p
 **Prereqs:** [Bun](https://bun.sh) ≥ 1.2, [Android platform-tools](https://developer.android.com/tools/releases/platform-tools) (`adb`), wireless debugging enabled and paired on your phone.
 
 ```bash
-git clone https://github.com/toxicwind/molt.git && cd molt
+git clone https://github.com/toxicwind/slough.git && cd slough
 bun install
 
 # one-shot bootstrap (no bun needed, coarse 4-way parallel):
@@ -102,14 +102,14 @@ Point it at your phone: `MOLT_PIXEL_IP` if your phone isn't at `10.0.0.77`, `MOL
 - [docs/toybox-quirk.md](docs/toybox-quirk.md) — why `find /sdcard` returns nothing (and the workaround)
 - [docs/manifest.md](docs/manifest.md) — SQLite schema, incremental logic, verify flow
 - [docs/syncthing.md](docs/syncthing.md) — the continuous-sync future: batch pulls are the bootstrap
-- [docs/safety.md](docs/safety.md) — what molt will and won't touch on your phone
+- [docs/safety.md](docs/safety.md) — what slough will and won't touch on your phone
 - [CONTRIBUTING.md](CONTRIBUTING.md) — how to contribute
 - [CHANGELOG.md](CHANGELOG.md) — release history
 
 ## Project layout
 
 ```
-molt/
+slough/
 ├── src/
 │   ├── index.ts        # CLI: pull | verify | clean
 │   ├── pull.ts         # hybrid transfer engine

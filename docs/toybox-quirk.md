@@ -22,8 +22,8 @@ for d in /sdcard/*/; do
 done
 ```
 
-molt does this everywhere: `src/pull.ts` stats and lists per source dir, never from the root. The same quirk affects `du` — per-dir `du -sb /sdcard/<dir>` works; bare `du -sb /sdcard` may not.
+slough does this everywhere: `src/pull.ts` stats and lists per source dir, never from the root. The same quirk affects `du` — per-dir `du -sb /sdcard/<dir>` works; bare `du -sb /sdcard` may not.
 
 ## Why it matters
 
-A backup tool that trusts `find /sdcard` will report "0 files, backup complete" and you'll believe it until you don't. molt's `verify` command exists partly because of this: the manifest records what was *supposed* to be pulled, and verify checks it against what's actually on disk.
+A backup tool that trusts `find /sdcard` will report "0 files, backup complete" and you'll believe it until you don't. slough's `verify` command exists partly because of this: the manifest records what was *supposed* to be pulled, and verify checks it against what's actually on disk.

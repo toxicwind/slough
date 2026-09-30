@@ -1,5 +1,5 @@
 /**
- * molt — classifier routing tests.
+ * slough — classifier routing tests.
  *
  * The routing decision is pure (routeFor), so these run with no phone,
  * no filesystem, no Syncthing. Run: bun test
